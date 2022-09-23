@@ -287,6 +287,10 @@ public class LocalDatastoreHelper extends BaseEmulatorHelper<DatastoreOptions> {
    */
   @Override
   public void reset() throws IOException {
+    if (storeOnDisk) {
+      throw new IllegalStateException("reset() can only be called if setStoreOnDisk() is set to false");
+    }
+
     sendPostRequest("/reset");
   }
 
